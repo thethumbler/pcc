@@ -1059,7 +1059,8 @@ soft_int2fp(SFP rv, CONSZ l, TWORD f, TWORD t)
 	int sign = 0, exp;
 
 	if (!ISUNSIGNED(f) && ll < 0) {
-		ll = -ll;
+		if ((uint64_t) ll != 0x8000000000000000ULL)
+			ll = -ll;
 		sign = 1;
 	}
 
